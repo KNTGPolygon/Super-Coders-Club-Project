@@ -5,7 +5,9 @@ using UnityEngine;
 public class LockedDoorInteractions : MonoBehaviour, Interactable {
 
 	[SerializeField] private bool _isOpen;
-	private bool _isLocked;
+    [SerializeField] private IRotate openingRotation;
+    [SerializeField] private IRotate closingRotation;
+    private bool _isLocked;
 
 	public ActionCallbacker Actions { get; set; }
 	public void Initialize(bool openStatus=false)
@@ -30,7 +32,7 @@ public class LockedDoorInteractions : MonoBehaviour, Interactable {
 	{
 		if (_isOpen)
 		{
-//				Odpal animacje zamykania drzwi
+            closingRotation.DoRotate();
 			_isOpen = false;
 		}
 		else
@@ -39,8 +41,9 @@ public class LockedDoorInteractions : MonoBehaviour, Interactable {
 			{
 //				Sprawdz czy gracz ma klucz, jesli ma zmien status drzwi i zabierz klucz, jesli nie wyswietl Message2
 			}
-//				Odpal animacje otwierania drzwi
-			_isOpen = true;
+            //				Odpal animacje otwierania drzwi
+            openingRotation.DoRotate();
+            _isOpen = true;
 		}
 	}
 	

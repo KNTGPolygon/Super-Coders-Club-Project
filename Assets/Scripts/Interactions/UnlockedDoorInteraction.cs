@@ -6,7 +6,9 @@ public class UnlockedDoorInteractions : MonoBehaviour, Interactable
 {
 
 	[SerializeField] private bool _isOpen;
-	public ActionCallbacker Actions { get; set; }
+    [SerializeField] private IRotate openingRotation;
+    [SerializeField] private IRotate closingRotation;
+    public ActionCallbacker Actions { get; set; }
 	public void Initialize(bool openStatus=false)
 	{
 		_isOpen = openStatus;
@@ -28,12 +30,12 @@ public class UnlockedDoorInteractions : MonoBehaviour, Interactable
 	{
 		if (_isOpen)
 			{
-//				Odpal animacje zamykania drzwi
+                closingRotation.DoRotate();
 				_isOpen = false;
 			}
 		else
 			{
-//				Odpal animacje otwierania drzwi
+                openingRotation.DoRotate();
 				_isOpen = true;
 			}
 	}
