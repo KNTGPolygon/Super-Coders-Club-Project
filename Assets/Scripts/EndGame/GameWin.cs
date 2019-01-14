@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameWin : MonoBehaviour {
+public class GameWin : MonoBehaviour, IEndGame {
 
 	[SerializeField] private GameObject gameWinObject;
 	[SerializeField] private float endGameDelay=5.0f;
@@ -16,6 +16,6 @@ public class GameWin : MonoBehaviour {
 	private IEnumerator WinDisplay()
 	{
 		yield return new WaitForSeconds(endGameDelay);
-		//Application.LoadLevel(Application.loadedLevel);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

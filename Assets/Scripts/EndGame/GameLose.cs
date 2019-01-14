@@ -15,7 +15,7 @@ public class GameLose : MonoBehaviour, IEndGame
 
 	private IEnumerator DeathDisplay()
 	{
-		//Dopoki nie wcisnieta ktoregos buttona nic nie rob
-		yield return null;
+		yield return new WaitForSeconds(3);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

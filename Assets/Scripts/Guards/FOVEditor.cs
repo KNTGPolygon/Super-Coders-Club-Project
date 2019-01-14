@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof(FieldOfView))]
+/*[CustomEditor (typeof(FieldOfView))]
 public class FOVvisible : Editor
 {
     void OnSceneGUI()
@@ -16,4 +16,4 @@ public class FOVvisible : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleA * fov.viewRadius);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.viewRadius);
     }
-}
+}*/
