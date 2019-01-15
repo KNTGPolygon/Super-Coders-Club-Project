@@ -6,20 +6,31 @@ public class Movement : MonoBehaviour
 {
 
 	[SerializeField] private float playerSpeedPerSecond;
+	
+	private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 
-	void Update()
+	// Use this for initialization
+	void Start()
 	{
-		UpdatedPosition("d", Vector3.right);
-		UpdatedPosition("a", Vector3.left);
-		UpdatedPosition("w", Vector3.up);
-		UpdatedPosition("s", Vector3.down);
+		//Get and store a reference to the Rigidbody2D component so that we can access it.
+		rb2d = GetComponent<Rigidbody2D> ();
+	}
+	
+	void FixedUpdate()
+	{
+		Vector2 movement = UpdatedPosition("d", Vector2.right)+UpdatedPosition("a", Vector2.left)+UpdatedPosition("w", Vector2.up)+UpdatedPosition("s", Vector2.down);
+
+		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+		rb2d.velocity = movement * playerSpeedPerSecond;
+
 	}
 
-	private void UpdatedPosition(string key ,Vector3 moveVector)
+	private Vector2 UpdatedPosition(string key ,Vector2 moveVector)
 	{	
 		if (Input.GetKey(key))
 		{
-			transform.position += moveVector * playerSpeedPerSecond * Time.deltaTime;
+			return moveVector;
 		}
+		return new Vector2();
 	}
 }
